@@ -172,7 +172,7 @@
                 android:layout_width="379dp"
                 android:layout_height="48dp"
                 android:background="@drawable/fondo_boton"
-                android:text="Button"
+                android:text="Ir al Carrito"
                 android:textColor="@color/blanco"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
