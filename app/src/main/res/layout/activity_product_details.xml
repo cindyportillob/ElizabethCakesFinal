@@ -169,18 +169,19 @@
 
             <Button
                 android:id="@+id/btn_go_to_cart"
-                android:layout_width="379dp"
-                android:layout_height="48dp"
+                android:layout_width="382dp"
+                android:layout_height="49dp"
                 android:background="@drawable/fondo_boton"
                 android:text="Ir al Carrito"
                 android:textColor="@color/blanco"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.551"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btn_add_to_cart"
-                app:layout_constraintVertical_bias="0.109"
-                tools:text="Ir al Carrito" />
+                app:layout_constraintVertical_bias="0.084"
+                tools:visibility="visible" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
