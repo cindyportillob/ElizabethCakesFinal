@@ -68,7 +68,7 @@ class Registro : BaseActivity1() {
                 false
             }
             else -> {
-                // showErrorSnackBar(resources.getString(R.string.registery_successfull), false)
+
                 true
             }
         }
@@ -76,7 +76,7 @@ class Registro : BaseActivity1() {
 
     private fun registerUser() {
 
-        // Check with validate function if the entries are valid or not.
+
         if (validateRegisterDetails()) {
 
             showProgressDialog(resources.getString(R.string.please_wait))
@@ -84,7 +84,7 @@ class Registro : BaseActivity1() {
             val email: String = email1.text.toString().trim { it <= ' ' }
             val password: String = Password1.text.toString().trim { it <= ' ' }
 
-            // Create an instance and create a register a user with email and password.
+
             FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(
                     OnCompleteListener<AuthResult> { task ->
@@ -103,13 +103,7 @@ class Registro : BaseActivity1() {
 
                             FireStore().registerUser(this@Registro, user)
 
-                            //showErrorSnackBar(
-                            //  "Ha sido registrado correctamente. Su codigo de usuario es: ${firebaseUser.uid}",
-                            //   false
-                            //)
 
-                            //FirebaseAuth.getInstance().signOut()
-                            //finish()
                         } else {
 
                             showErrorSnackBar(task.exception!!.message.toString(), true)

@@ -12,14 +12,14 @@ import kotlinx.android.synthetic.main.activity_product_details.*
 class ProductDetailsActivity : BaseActivity1(), View.OnClickListener {
 
 
-    // A global variable for product id.
+
     private var mProductId: String = ""
     private lateinit var mProductDetails: Product
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        //This call the parent constructor
+
         super.onCreate(savedInstanceState)
-        // This is used to align the xml view to this class
+
         setContentView(R.layout.activity_product_details)
 
         if (intent.hasExtra(Constants.EXTRA_PRODUCT_ID)) {
@@ -64,9 +64,7 @@ class ProductDetailsActivity : BaseActivity1(), View.OnClickListener {
         }
     }
 
-    /**
-     * A function to prepare the cart item to add it to the cart in cloud firestore.
-     */
+
     private fun addToCart() {
 
         val addToCart = Cart(
@@ -84,9 +82,7 @@ class ProductDetailsActivity : BaseActivity1(), View.OnClickListener {
         FireStore().addCartItems(this@ProductDetailsActivity, addToCart)
     }
 
-    /**
-     * A function for actionBar Setup.
-     */
+
     private fun setupActionBar() {
 
         setSupportActionBar(toolbar_product_details_activity)
@@ -100,28 +96,22 @@ class ProductDetailsActivity : BaseActivity1(), View.OnClickListener {
         toolbar_product_details_activity.setNavigationOnClickListener { onBackPressed() }
     }
 
-    /**
-     * A function to call the firestore class function that will get the product details from cloud firestore based on the product id.
-     */
+
     private fun getProductDetails() {
 
-        // Show the product dialog
+
         showProgressDialog(resources.getString(R.string.please_wait))
 
-        // Call the function of FirestoreClass to get the product details.
+
         FireStore().getProductDetails(this@ProductDetailsActivity, mProductId)
     }
 
-    /**
-     * A function to notify the success result of the product details based on the product id.
-     *
-     * @param product A model class with product details.
-     */
+
     fun productDetailsSuccess(product: Product) {
 
         mProductDetails = product
 
-        // Populate the product details in the UI.
+
         GlideLoader(this@ProductDetailsActivity).loadProductPicture(
             product.image,
             iv_product_detail_image
@@ -135,10 +125,9 @@ class ProductDetailsActivity : BaseActivity1(), View.OnClickListener {
 
         if(product.stock_quantity.toInt() == 0){
 
-            // Hide Progress dialog.
+
             hideProgressDialog()
 
-            // Hide the AddToCart button if the item is already in the cart.
             btn_add_to_cart.visibility = View.GONE
 
             tv_product_details_stock_quantity.text =
@@ -152,7 +141,7 @@ class ProductDetailsActivity : BaseActivity1(), View.OnClickListener {
             )
         }else{
 
-            // There is no need to check the cart list if the product owner himself is seeing the product details.
+
             if (FireStore().getCurrentUserID() == product.user_id) {
                 // Hide Progress dialog.
                 hideProgressDialog()
@@ -162,25 +151,21 @@ class ProductDetailsActivity : BaseActivity1(), View.OnClickListener {
         }
     }
 
-    /**
-     * A function to notify the success result of item exists in the cart.
-     */
+
     fun productExistsInCart() {
 
-        // Hide the progress dialog.
+
         hideProgressDialog()
 
-        // Hide the AddToCart button if the item is already in the cart.
+
         btn_add_to_cart.visibility = View.GONE
-        // Show the GoToCart button if the item is already in the cart. User can update the quantity from the cart list screen if he wants.
+
         btn_go_to_cart.visibility = View.VISIBLE
     }
 
-    /**
-     * A function to notify the success result of item added to the to cart.
-     */
+
     fun addToCartSuccess() {
-        // Hide the progress dialog.
+
         hideProgressDialog()
 
         Toast.makeText(
@@ -189,9 +174,9 @@ class ProductDetailsActivity : BaseActivity1(), View.OnClickListener {
             Toast.LENGTH_SHORT
         ).show()
 
-        // Hide the AddToCart button if the item is already in the cart.
+
         btn_add_to_cart.visibility = View.GONE
-        // Show the GoToCart button if the item is already in the cart. User can update the quantity from the cart list screen if he wants.
+
         btn_go_to_cart.visibility = View.VISIBLE
     }
 }

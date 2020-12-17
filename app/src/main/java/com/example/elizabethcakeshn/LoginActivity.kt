@@ -31,7 +31,7 @@ class LoginActivity : BaseActivity1(), View.OnClickListener {
         }
 
         button.setOnClickListener{
-            //validateLoginDetails()
+
             logInRegisteredUser()
         }
 
@@ -47,7 +47,7 @@ class LoginActivity : BaseActivity1(), View.OnClickListener {
     fun userLoggedInSuccess(user: Users){
         hideProgressDialog()
 
-        //imprimir detalles de usuarios en el log
+
         Log.i("Nombre Completo: ",user.Nombre)
         Log.i("Email: ",user.Email)
 
@@ -72,7 +72,7 @@ class LoginActivity : BaseActivity1(), View.OnClickListener {
 
                 }
                 R.id.button->{
-                    //validateLoginDetails()
+
                     logInRegisteredUser()
                 }
 
@@ -106,11 +106,11 @@ class LoginActivity : BaseActivity1(), View.OnClickListener {
         if(validateLoginDetails()){
             showProgressDialog("Por favor Espere")
 
-            //obtener el texto de los campos
+
             val email = editTextTextPersonName.text.toString().trim { it <= ' ' }
             val password = editTextTextPassword.text.toString().trim { it <= ' ' }
 
-            //logeo utilizando firebaseAuth
+
             FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful){

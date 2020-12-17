@@ -12,11 +12,11 @@ import kotlinx.android.synthetic.main.fragment_dashboard.*
 
 class DashboardFragment : BaseFragment() {
 
-    //private lateinit var dashboardViewModel: DashboardViewModel
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // If we want to use the option menu in fragment we need to add it.
+
         setHasOptionsMenu(true)
     }
 
@@ -39,10 +39,7 @@ class DashboardFragment : BaseFragment() {
     }
 
     private fun getProductListFromFireStore() {
-        // Show the progress dialog.
 
-
-        // Call the function of Firestore class.
         FireStore().getProductsList(this@DashboardFragment)
     }
 
@@ -58,7 +55,7 @@ class DashboardFragment : BaseFragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-       // dashboardViewModel = ViewModelProviders.of(this).get(DashboardViewModel::class.java)
+
         val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
 
 
@@ -121,32 +118,32 @@ class DashboardFragment : BaseFragment() {
     private fun showAlertDialogToDeleteProduct(productID: String) {
 
         val builder = AlertDialog.Builder(requireActivity())
-        //set title for alert dialog
+
         builder.setTitle(resources.getString(R.string.delete_dialog_title))
-        //set message for alert dialog
+
         builder.setMessage(resources.getString(R.string.delete_dialog_message))
         builder.setIcon(android.R.drawable.ic_dialog_alert)
 
-        //performing positive action
+
         builder.setPositiveButton(resources.getString(R.string.yes)) { dialogInterface, _ ->
 
 
 
-            // Call the function of Firestore class.
+
             FireStore().deleteProduct(this@DashboardFragment, productID)
-            // END
+
 
             dialogInterface.dismiss()
         }
 
-        //performing negative action
+
         builder.setNegativeButton(resources.getString(R.string.no)) { dialogInterface, _ ->
 
             dialogInterface.dismiss()
         }
-        // Create the AlertDialog
+
         val alertDialog: AlertDialog = builder.create()
-        // Set other dialog properties
+
         alertDialog.setCancelable(false)
         alertDialog.show()
     }

@@ -42,7 +42,7 @@ class UserProfileActivity : BaseActivity1(), View.OnClickListener {
             iv_user_photo.setOnClickListener(this@UserProfileActivity)
             btn_submit.setOnClickListener(this@UserProfileActivity)
         }else{
-            //setupActionBar()
+
             tv_title.text = resources.getString(R.string.title_edit_profile)
             et_first_name.isEnabled = false
             et_first_name.setText("Cindy Portillo")
@@ -65,16 +65,13 @@ class UserProfileActivity : BaseActivity1(), View.OnClickListener {
 
         val userHashMap = HashMap<String, Any>()
 
-        // TODO Step 5: Update the code if user is about to Edit Profile details instead of Complete Profile.
-        // Get the FirstName from editText and trim the space
+
         val firstName = et_first_name.text.toString().trim { it <= ' ' }
         if (firstName != detalleUsuario.Nombre) {
             userHashMap[Constants.NAME] = firstName
         }
 
-        // TODO Step 6: Email ID is not editable so we don't need to add it here to get the text from EditText.
 
-        // Here we get the text from editText and trim the space
         val mobileNumber = et_mobile_number.text.toString().trim { it <= ' ' }
         val gender = if (rb_male.isChecked) {
             Constants.MALE
@@ -86,7 +83,7 @@ class UserProfileActivity : BaseActivity1(), View.OnClickListener {
             userHashMap[Constants.IMAGE] = mUserProfileImageURL
         }
 
-        // TODO Step 7: Update the code here if it is to edit the profile.
+
         if (mobileNumber.isNotEmpty() && mobileNumber != detalleUsuario.mobile.toString()) {
             userHashMap[Constants.MOBILE] = mobileNumber.toLong()
         }
@@ -95,15 +92,11 @@ class UserProfileActivity : BaseActivity1(), View.OnClickListener {
             userHashMap[Constants.GENDER] = gender
         }
 
-        // Here if user is about to complete the profile then update the field or else no need.
-        // 0: User profile is incomplete.
-        // 1: User profile is completed.
+
         if (detalleUsuario.Pcompleto == 0) {
             userHashMap[Constants.COMPLETE_PROFILE] = 1
         }
-        // END
 
-        // call the registerUser function of FireStore class to make an entry in the database.
         FireStore().updateUserProfileData(
             this@UserProfileActivity,
             userHashMap
@@ -161,20 +154,7 @@ class UserProfileActivity : BaseActivity1(), View.OnClickListener {
             }
         }
     }
-    /**
-     * Receive the result from a previous call to
-     * {@link #startActivityForResult(Intent, int)}.  This follows the
-     * related Activity API as described there in
-     * {@link Activity#onActivityResult(int, int, Intent)}.
-     *
-     * @param requestCode The integer request code originally supplied to
-     *                    startActivityForResult(), allowing you to identify who this
-     *                    result came from.
-     * @param resultCode The integer result code returned by the child activity
-     *                   through its setResult().
-     * @param data An Intent, which can return result data to the caller
-     *               (various data can be attached to Intent "extras").
-     */
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(resultCode == Activity.RESULT_OK){
@@ -200,11 +180,6 @@ class UserProfileActivity : BaseActivity1(), View.OnClickListener {
         }
     }
 
-    // TODO Step 1: Create a function to setup action bar if the user is about to edit profile.
-    // START
-    /**
-     * A function for actionBar Setup.
-     */
 
     private fun validateUserProfileDetails():Boolean{
         return when{
@@ -231,19 +206,11 @@ class UserProfileActivity : BaseActivity1(), View.OnClickListener {
 
 
     }
-// END
 
-    /**
-     * A function to validate the input entries for profile details.
-     */
-
-    /**
-     * A function to notify the success result and proceed further accordingly after updating the user details.
-     */
     fun userProfileUpdateSuccess() {
 
 
-        // Hide the progress dialog
+
         hideProgressDialog()
 
         Toast.makeText(
@@ -253,17 +220,12 @@ class UserProfileActivity : BaseActivity1(), View.OnClickListener {
         ).show()
 
 
-        // TODO Step 8: Redirect it to the DashboardActivity instead of MainActivity.
-        // Redirect to the Main Screen after profile completion.
+
         startActivity(Intent(this@UserProfileActivity, MainActivity::class.java))
         finish()
     }
 
-    /**
-     * A function to notify the success result of image upload to the Cloud Storage.
-     *
-     * @param imageURL After successful upload the Firebase Cloud returns the URL.
-     */
+
 
     fun imageUploadSuccess(imageURL: String){
         mUserProfileImageURL = imageURL
@@ -271,9 +233,7 @@ class UserProfileActivity : BaseActivity1(), View.OnClickListener {
         updateUserProfileDetails()
     }
 
-    /**
-     * A function to update user profile details to the firestore.
-     */
+
 
 
 }

@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : BaseFragment() {
 
-    //private lateinit var homeViewModel: HomeViewModel
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +28,7 @@ class HomeFragment : BaseFragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-       // homeViewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
+
         val root = inflater.inflate(R.layout.fragment_home, container, false)
 
 
