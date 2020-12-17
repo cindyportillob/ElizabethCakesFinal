@@ -107,7 +107,7 @@
                     android:contentDescription="@string/content_description"
                     android:foreground="?attr/selectableItemBackgroundBorderless"
                     android:padding="@dimen/ib_cart_item_padding"
-                    android:src="@drawable/ic_baseline_add_24" />
+                    android:src="@drawable/ic_color_rosa" />
             </LinearLayout>
         </RelativeLayout>
     </LinearLayout>
