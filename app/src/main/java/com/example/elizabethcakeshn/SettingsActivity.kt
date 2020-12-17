@@ -27,7 +27,7 @@ class SettingsActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
 
-        //setupActionBar()
+
 
         edit_boton.setOnClickListener(this@SettingsActivity)
         btn_cerrarSesion.setOnClickListener(this@SettingsActivity)
@@ -71,7 +71,7 @@ class SettingsActivity : AppCompatActivity(), View.OnClickListener {
     }*/
 
     private fun getUserDetails(){
-       // showProgressDialog("Por favor espera")
+
         (resources.getString(R.string.please_wait))
         FireStore().getUserDetails(this@SettingsActivity)
     }
@@ -79,7 +79,7 @@ class SettingsActivity : AppCompatActivity(), View.OnClickListener {
     fun userDetailsSuccess(users: Users){
 
         mUserDetails = users
-        //hideProgressDialog()
+
 
 
         GlideLoader(this@SettingsActivity).loadProductPicture(users.image, iv_user_photo)
