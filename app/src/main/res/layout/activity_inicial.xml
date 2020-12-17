@@ -5,6 +5,4 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/img_inicial"
-    tools:context=".InicialActivity">
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    tools:context=".InicialActivity"/>
