@@ -45,9 +45,9 @@ class UserProfileActivity : BaseActivity1(), View.OnClickListener {
             //setupActionBar()
             tv_title.text = resources.getString(R.string.title_edit_profile)
             et_first_name.isEnabled = false
-            et_first_name.setText("Luis Cueva")
+            et_first_name.setText("Cindy Portillo")
             et_email.isEnabled = false
-            et_email.setText("luisc_cuevaordo@hotmail.com")
+            et_email.setText("cindy.portillo@ujcv.edu.hn")
 
             if(detalleUsuario.mobile != 0L){
                 et_mobile_number.setText(detalleUsuario.mobile.toString())
