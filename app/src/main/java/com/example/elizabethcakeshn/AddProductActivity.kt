@@ -36,7 +36,7 @@ class AddProductActivity : BaseActivity1(), View.OnClickListener {
         if (v != null) {
             when (v.id) {
 
-                // The permission code is similar to the user profile image selection.
+
                 R.id.ImageView5 -> {
                     if (ContextCompat.checkSelfPermission(
                             this,
@@ -46,9 +46,7 @@ class AddProductActivity : BaseActivity1(), View.OnClickListener {
                     ) {
                         Constants.showImageChooser(this@AddProductActivity)
                     } else {
-                        /*Requests permissions to be granted to this application. These permissions
-                         must be requested in your manifest, they should not be granted to your app,
-                         and they should have protection level*/
+
                         ActivityCompat.requestPermissions(
                             this,
                             arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
@@ -113,19 +111,18 @@ class AddProductActivity : BaseActivity1(), View.OnClickListener {
 
     fun imageUploadSuccess(imageURL: String) {
 
-        // Initialize the global image url variable.
+
         mProductImageURL = imageURL
 
         uploadProductDetails()
     }
     private fun uploadProductDetails() {
 
-        // Get the logged in username from the SharedPreferences that we have stored at a time of login.
+
         val username =
             this.getSharedPreferences(Constants.ELIZABETHCAKES_PREFERENCES, Context.MODE_PRIVATE)
                 .getString(Constants.LOGGED_IN_USERNAME, "")!!
 
-        // Here we get the text from editText and trim the space
         val product = Product(
 
             FireStore().getCurrentUserID(),
@@ -163,7 +160,6 @@ class AddProductActivity : BaseActivity1(), View.OnClickListener {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == Constants.READ_STORAGE_PERMISSION_CODE) {
-            //If permission is granted
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Constants.showImageChooser(this@AddProductActivity)
             } else {
@@ -184,7 +180,6 @@ class AddProductActivity : BaseActivity1(), View.OnClickListener {
             && data!!.data != null
         ) {
 
-            // Replace the add icon with edit icon once the image is selected.
             iv_add_update_product.setImageDrawable(
                 ContextCompat.getDrawable(
                     this@AddProductActivity,
@@ -192,11 +187,10 @@ class AddProductActivity : BaseActivity1(), View.OnClickListener {
                 )
             )
 
-            // The uri of selection image from phone storage.
              mSelectedImageFileUri = data.data!!
 
             try {
-                // Load the product image in the ImageView.
+
                 GlideLoader(this@AddProductActivity).loadProductPicture(mSelectedImageFileUri!!, ImageView5)
             } catch (e: IOException) {
                 e.printStackTrace()

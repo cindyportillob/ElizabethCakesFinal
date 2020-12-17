@@ -22,7 +22,7 @@ class InicialActivity : AppCompatActivity() {
                 startActivity(Intent(this@InicialActivity,LoginActivity::class.java))
                 finish()
             },
-            //Tiempo
+
             2500
 
         )
